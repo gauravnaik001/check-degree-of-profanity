@@ -17,7 +17,7 @@ import csv
 # Read the tweets data from the csv file
 # Here the tweets data is present in a csv file, the tweets considered are only in the english language
 tweets_list = []
-with open('C:\\Users\\Gaurav\\Desktop\\Tweets dataset.csv', newline='') as file:
+with open('Tweets dataset.csv', newline='') as file:
     for row in csv.reader(file,delimiter='\n'):
         tweets_list.append(row[0])  # the data is taken from the csv file and converted into a list
 print(tweets_list)
@@ -25,17 +25,16 @@ print(tweets_list)
 # Read the profanities data from the csv file
 # Here the tweets data is present in a csv file, the tweets considered are only in the english language
 profanities_list = []
-with open('C:\\Users\\Gaurav\\Desktop\\Profanities dataset.csv', newline='') as file:
+with open('Profanities dataset.csv', newline='') as file:
     for row in csv.reader(file):
         profanities_list.append(row[0])  # the data is taken from the csv file and converted into a list
 print(profanities_list)
 
 # Preprocess the data
-# Three things are done to preprocess the data, convert it into lowercase, removes special character
 
 # Convert into lowercase
 def convert_lowercase(sentence):
-    filtered_sentence = sentence.lower()  # converts the inputted value into lowercase
+    filtered_sentence = sentence.lower()  # converts the inputted string into lowercase
     return filtered_sentence
 
 # Remove special characters
@@ -59,12 +58,9 @@ def calculate_profanity(sentence):
 # Calculate the degree of profanity for each tweet
 for sentence in tweets_list :
     sentence = str(sentence)
-    lower_sentence = convert_lowercase(sentence) 
-    print(lower_sentence)
-    removedchar_sentence = remove_specialchar(lower_sentence)
-    print(removedchar_sentence)
-    tokenized_sentence = tokenize(removedchar_sentence)
-    print(tokenized_sentence)
+    lower_sentence = convert_lowercase(sentence)     
+    removedchar_sentence = remove_specialchar(lower_sentence)    
+    tokenized_sentence = tokenize(removedchar_sentence)    
     degree_of_profanity = calculate_profanity(tokenized_sentence)
     print("Degree of profanity - {:.2f}".format(degree_of_profanity))
 
